@@ -4,10 +4,14 @@
 }
 
 #all-body {
-    background-color: #f0ecec;
+    background-color: azure;
 }
 
 #main-body {
-    background-color: #f0ecec;
     margin: 5vw;
+}
+
+#update_Button {
+    margin-bottom: 2vw;
+    background-color: lime;
 }
