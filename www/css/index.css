@@ -25,18 +25,17 @@
         
         #ansBox {
             text-align: center;
-            margin-top: 3vh;
+            margin-top: 30vh;
             margin-left: 10vw;
             margin-right: 10vw;
-            background-color: azure;
+            background-color: white;
         }
         
         #body {
-            background-color: #00dd00;
+            background-color: azure;
         }
         
         .card {
             margin: 5px;
             padding: 0;
-            background-color: #00dd00;
         }
