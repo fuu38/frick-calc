@@ -1,4 +1,4 @@
-/*
+        /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -14,18 +14,27 @@
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
  * KIND, either express or implied.  See the License for the
  * specific language governing permissions and limitations
- * under the License.
- */
-
-footer {
-    text-align: center;
-    position: absolute;
-    bottom: 0;
-    background-color: aqua;
-    right: 0;
-}
-
-#ansBox {
-    text-align: center;
-    padding: 3vh;
-}
+ * under the License.*/
+        
+        footer {
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+        }
+        
+        #ansBox {
+            text-align: center;
+            margin-top: 3vh;
+            margin-left: 10vw;
+            margin-right: 10vw;
+            background-color: azure;
+        }
+        
+        #body {
+            background-color: #00dd00;
+        }
+        
+        .card {
+            margin: 5px;
+        }
