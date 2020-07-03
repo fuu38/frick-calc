@@ -38,16 +38,16 @@ function set(display, computable) {
 *
 */
 function calc() {
-    var answer=0;
     try {
-        answer = new Function("return " + formula)();
+        const answer = new Function("return " + formula)();
+        ansBox.value=answer;
         console.log(answer);
     }
     catch(e){
-        answer="式が不正です";
+        ansBox.value="";
+        alert("式を計算できませんでした><");
         console.log(e);
     }
-    ansBox.value=answer;
 }
 
 document.getElementById("to_Setting").addEventListener('click', function () {
