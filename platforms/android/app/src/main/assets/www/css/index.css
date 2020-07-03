@@ -25,10 +25,9 @@
         
         #ansBox {
             text-align: center;
-            margin-top: 30vh;
-            margin-left: 10vw;
-            margin-right: 10vw;
+            font-size: x-large;
             background-color: white;
+            margin-top:30vh;
         }
         
         #body {

@@ -34,7 +34,7 @@ function set(display, computable) {
     ansBox.value= ansBox.value + display;
     formula += computable;
 }
-
+//計算する関数
 function calc() {
     const answer = new Function("return " + formula)();
     console.log(answer);
@@ -56,6 +56,6 @@ document.getElementById("operands").addEventListener('click', function () {
 });
 
 document.getElementById("AC").addEventListener('click', function () {
-    calc();
+    ansBox.value="";
 });
 
