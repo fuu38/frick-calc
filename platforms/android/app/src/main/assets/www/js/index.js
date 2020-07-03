@@ -34,11 +34,20 @@ function set(display, computable) {
     ansBox.value= ansBox.value + display;
     formula += computable;
 }
-
+/*
+*
+*/
 function calc() {
-    const answer = new Function("return " + formula)();
-    console.log(answer);
-    ansBox.value=new Function("return " + formula)();
+    try {
+        const answer = new Function("return " + formula)();
+        ansBox.value=answer;
+        console.log(answer);
+    }
+    catch(e){
+        ansBox.value="";
+        alert("式を計算できませんでした><");
+        console.log(e);
+    }
 }
 
 document.getElementById("to_Setting").addEventListener('click', function () {
@@ -56,6 +65,6 @@ document.getElementById("operands").addEventListener('click', function () {
 });
 
 document.getElementById("AC").addEventListener('click', function () {
-    calc();
+    ansBox.value="";
 });
 
