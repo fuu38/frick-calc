@@ -34,11 +34,20 @@ function set(display, computable) {
     ansBox.value= ansBox.value + display;
     formula += computable;
 }
-//計算する関数
+/*
+*
+*/
 function calc() {
-    const answer = new Function("return " + formula)();
-    console.log(answer);
-    ansBox.value=new Function("return " + formula)();
+    var answer=0;
+    try {
+        answer = new Function("return " + formula)();
+        console.log(answer);
+    }
+    catch(e){
+        answer="式が不正です";
+        console.log(e);
+    }
+    ansBox.value=answer;
 }
 
 document.getElementById("to_Setting").addEventListener('click', function () {
