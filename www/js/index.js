@@ -20,6 +20,42 @@
 計算の実装
 フリックの実装
 その他もろもろ*/
-document.getElementById("to_Setting").onclick = function() {
-    window.location.href = "setting.html"
+//設定ボタン
+var ansBox = document.getElementById("ansBox");
+var formula = "";
+
+/*
+@param display{string} 表示する数字 or 演算子
+@param computable{string} 計算する数字 or 演算子(特に演算子は表示と違うことがあるため)
+ */
+
+function set(display, computable) {
+    console.log(display,computable);
+    ansBox.value= ansBox.value + display;
+    formula += computable;
 }
+
+function calc() {
+    const answer = new Function("return " + formula)();
+    console.log(answer);
+    ansBox.value=new Function("return " + formula)();
+}
+
+document.getElementById("to_Setting").addEventListener('click', function () {
+    window.location.href = "setting.html"
+});
+//5ボタン
+document.getElementById("num-6to0").addEventListener('click', function () {
+    set('6', '6');
+});
+document.getElementById("num-1to5").addEventListener('click', function () {
+    set('1', '1');
+});
+document.getElementById("operands").addEventListener('click', function () {
+    set('+', '+');
+});
+
+document.getElementById("AC").addEventListener('click', function () {
+    calc();
+});
+

@@ -16,3 +16,10 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+/*
+計算の実装
+フリックの実装
+その他もろもろ*/
+document.getElementById("to_Setting").onclick = function() {
+    window.location.href = "setting.html"
+}

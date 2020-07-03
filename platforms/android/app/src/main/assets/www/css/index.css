@@ -39,3 +39,10 @@
             margin: 5px;
             padding: 0;
         }
+        
+        #to_Setting {
+            position: absolute;
+            right: 0;
+            margin: 1vw;
+            background-color: lime;
+        }

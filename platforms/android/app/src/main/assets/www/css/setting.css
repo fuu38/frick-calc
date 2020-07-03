@@ -1,0 +1,17 @@
+#setting-title {
+    background-color: silver;
+    text-align: center;
+}
+
+#all-body {
+    background-color: azure;
+}
+
+#main-body {
+    margin: 5vw;
+}
+
+#update_Button {
+    margin-bottom: 2vw;
+    background-color: lime;
+}
