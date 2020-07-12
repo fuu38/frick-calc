@@ -30,41 +30,44 @@ var formula = "";
  */
 
 function set(display, computable) {
-    console.log(display,computable);
-    ansBox.value= ansBox.value + display;
+    console.log(display, computable);
+    ansBox.value = ansBox.value + display;
     formula += computable;
 }
-/*
-*
-*/
+
 function calc() {
     try {
         const answer = new Function("return " + formula)();
-        ansBox.value=answer;
+        ansBox.value = answer;
         console.log(answer);
-    }
-    catch(e){
-        ansBox.value="";
+    } catch (e) {
+        ansBox.value = "";
         alert("式を計算できませんでした><");
         console.log(e);
     }
 }
 
-document.getElementById("to_Setting").addEventListener('click', function () {
+document.getElementById("to_Setting").addEventListener('click', function() {
     window.location.href = "setting.html"
 });
 //5ボタン
-document.getElementById("num-6to0").addEventListener('click', function () {
-    set('6', '6');
+document.getElementById("5_9").addEventListener('click', function() {
+    set('5', '5');
 });
-document.getElementById("num-1to5").addEventListener('click', function () {
-    set('1', '1');
+document.getElementById("0_4").addEventListener('click', function() {
+    set('0', '0');
 });
-document.getElementById("operands").addEventListener('click', function () {
-    set('+', '+');
+document.getElementById("operands").addEventListener('click', function() {
+    const operands = ['+', '-', '*', '/'];
+    const last = formula.slice(-1);
+    console.log(last);
+    console.log(operands.includes(last));
+    if (!operands.includes(last)) {
+        set('+', '+');
+    }
+
 });
 
-document.getElementById("AC").addEventListener('click', function () {
-    ansBox.value="";
+document.getElementById("AC").addEventListener('click', function() {
+    ansBox.value = "";
 });
-

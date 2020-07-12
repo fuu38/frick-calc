@@ -18,7 +18,7 @@
         
         footer {
             text-align: center;
-            background-color: aquamarine;
+            background-color: white;
             position: absolute;
             bottom: 0;
             right: 0;
@@ -32,7 +32,7 @@
         }
         
         #body {
-            background-color: azure;
+            background-color: silver;
         }
         
         #to_Setting {
