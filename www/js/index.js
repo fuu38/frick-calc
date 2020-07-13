@@ -46,28 +46,67 @@ function calc() {
         console.log(e);
     }
 }
-
-document.getElementById("to_Setting").addEventListener('click', function() {
+//設定
+const buttonOfSetting = document.getElementById("to_Setting");
+buttonOfSetting.addEventListener('click', function() {
     window.location.href = "setting.html"
 });
 //5ボタン
-document.getElementById("5_9").addEventListener('click', function() {
+const keyOfFive_nine = document.getElementById("5_9");
+keyOfFive_nine.addEventListener('click', function() {
     set('5', '5');
 });
-document.getElementById("0_4").addEventListener('click', function() {
+keyOfFive_nine.addEventListener('touchstart', function() {
+    $("#5_9").css("display", "none");
+    $("#5_9_pushed").css("display", "block");
+});
+keyOfFive_nine.addEventListener('touchend', function() {
+    $("#5_9_pushed").css("display", "none");
+    $("#5_9").css("display", "block");
+});
+//0ボタン
+const keyOfZero_four = document.getElementById("0_4");
+keyOfZero_four.addEventListener('click', function() {
     set('0', '0');
 });
-document.getElementById("operands").addEventListener('click', function() {
+keyOfZero_four.addEventListener('touchstart', function() {
+    $("#0_4").css("display", "none");
+    $("#0_4_pushed").css("display", "block");
+});
+keyOfZero_four.addEventListener('touchend', function() {
+    $("#0_4_pushed").css("display", "none");
+    $("#0_4").css("display", "block");
+});
+//演算子ボタン
+const keyOfOperands = document.getElementById("operands");
+keyOfOperands.addEventListener('click', function() {
     const operands = ['+', '-', '*', '/'];
     const last = formula.slice(-1);
     console.log(last);
     console.log(operands.includes(last));
+    //直前が演算子でないなら演算子を追加
     if (!operands.includes(last)) {
         set('+', '+');
     }
-
 });
-
-document.getElementById("AC").addEventListener('click', function() {
+keyOfOperands.addEventListener('touchstart', function() {
+    $("#operands").css("display", "none");
+    $("#operands_pushed").css("display", "block");
+});
+keyOfOperands.addEventListener('touchend', function() {
+    $("#operands_pushed").css("display", "none");
+    $("#operands").css("display", "block");
+});
+//ACボタン
+const keyOfAC = document.getElementById("AC");
+keyOfAC.addEventListener('click', function() {
     ansBox.value = "";
+});
+keyOfAC.addEventListener('touchstart', function() {
+    $("#AC").css("display", "none");
+    $("#AC_pushed").css("display", "block");
+});
+keyOfAC.addEventListener('touchend', function() {
+    $("#AC_pushed").css("display", "none");
+    $("#AC").css("display", "block");
 });
