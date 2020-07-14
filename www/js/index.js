@@ -146,23 +146,72 @@ window.onload = () => {
         console.log("func end!");
     });
     //演算子ボタン
-    $("#operands").on('click', function() {
+
+    $("#operands").on('touchstart', function(event) {
+        window.touchStartX = event.changedTouches[0].pageX;
+        window.touchStartY = event.changedTouches[0].pageY;
+        console.log(window.touchStartX);
+        console.log(window.touchStartY);
+        $("#operands").css("display", "none");
+        $("#operands_pushed").css("display", "block");
+        $("#suggest_add").css("display", "block");
+    });
+    $("#operands").on('touchmove', function(event) {
+        var thisx = event.changedTouches[0].pageX;
+        var thisy = event.changedTouches[0].pageY;
+        const diffX = thisx - window.touchStartX;
+        const diffY = thisy - window.touchStartY;
+        console.log(diffX);
+        console.log(diffY);
+
+        $(".suggest-img").css("display", "none"); //一回サジェストを全部消す
+        if (Math.abs(diffX) < window.standard && Math.abs(diffY) < window.standard) {
+            $("#suggest_add").css("display", "block");
+        } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
+            $("#suggest_sub").css("display", "block");
+        } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) === diffX) { //右フリック
+            $("#suggest_div").css("display", "block");
+        } else if (Math.abs(diffX) <= Math.abs(diffY) && Math.abs(diffY) === diffY) { //下フリック
+            $("#suggest_dot").css("display", "block");
+        } else { //上フリック
+            $("#suggest_by").css("display", "block");
+        }
+    })
+    $("#operands").on('touchend', function() {
+        $(".suggest-img").css("display", "none"); //サジェスト削除
+        var thisx = event.changedTouches[0].pageX;
+        var thisy = event.changedTouches[0].pageY;
+        const diffX = thisx - window.touchStartX;
+        const diffY = thisy - window.touchStartY;
+        console.log(diffX);
+        console.log(diffY);
         const operands = ['+', '-', '*', '/'];
         const last = formula.slice(-1);
         console.log(last);
         console.log(operands.includes(last));
         //直前が演算子でないなら演算子を追加
         if (!operands.includes(last)) {
-            addFormula('+');
+
+            if (Math.abs(diffX) < window.standard && Math.abs(diffY) < window.standard) {
+                addFormula('+');
+            } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
+                addFormula('-');
+            } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) === diffX) { //右フリック
+                addFormula('/');
+            } else if (Math.abs(diffX) <= Math.abs(diffY) && Math.abs(diffY) === diffY) { //上フリック
+                addFormula('.');
+            } else { //下フリック
+                addFormula('*');
+            }
+        } else {
+            console.log("Cannot append operands because an operand found before this query.");
         }
-    });
-    $("#operands").on('touchstart', function() {
-        $("#operands").css("display", "none");
-        $("#operands_pushed").css("display", "block");
-    });
-    $("#operands").on('touchend', function() {
+        $(".suggest-img").css("display", "none");
+        window.touchStartX = 0;
+        window.touxhStartY = 0;
         $("#operands_pushed").css("display", "none");
         $("#operands").css("display", "block");
+        console.log("func end!");
     });
     //ACボタン
     $("#AC").on('click', function() {
