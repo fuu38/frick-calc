@@ -268,7 +268,7 @@ window.onload = () => {
     });
 };
 
-function
+
 
 function addFormula(opera) {
     const display_computable = {
