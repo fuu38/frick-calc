@@ -43,14 +43,7 @@
             background-color: lime;
         }
         
-        .flick-keys-default {
-            height: auto;
-            width: 33%;
-        }
-        
         .flick-keys-pushed {
-            height: auto;
-            width: 33%;
             display: none;
         }
         
