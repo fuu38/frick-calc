@@ -24,10 +24,6 @@
 var ansBox = document.getElementById("ansBox");
 var formula = "";
 
-/*
-@param display{string} 表示する数字 or 演算子
-@param computable{string} 計算する数字 or 演算子(特に演算子は表示と違うことがあるため)
- */
 //jQueryは読み込んでからじゃないと動かないのでonloadの後でイベント登録
 window.onload = () => {
     //設定
@@ -36,19 +32,22 @@ window.onload = () => {
     });
     //5ボタン
     $("#5_9").on('click', function() {
-        set('5', '5');
+
     });
     $("#5_9").on('touchstart', function() {
         $("#5_9").css("display", "none");
         $("#5_9_pushed").css("display", "block");
+        $("#suggest_5").css("display", "block");
     });
     $("#5_9").on('touchend', function() {
         $("#5_9_pushed").css("display", "none");
         $("#5_9").css("display", "block");
+        $("#suggest_5").css("display", "none");
+        addFormula('5');
     });
     //0ボタン
     $("#0_4").on('click', function() {
-        set('0', '0');
+        addFormula('0');
     });
     $("#0_4").on('touchstart', function() {
         $("#0_4").css("display", "none");
@@ -66,7 +65,7 @@ window.onload = () => {
         console.log(operands.includes(last));
         //直前が演算子でないなら演算子を追加
         if (!operands.includes(last)) {
-            set('+', '+');
+            addFormula('+');
         }
     });
     $("#operands").on('touchstart', function() {
@@ -79,7 +78,11 @@ window.onload = () => {
     });
     //ACボタン
     $("#AC").on('click', function() {
-        ansBox.value = "";
+        var val = ansBox.value;
+        console.log(val);
+        console.log(typeof(val));
+        console.log(val.slice(0, val.length - 1));
+        ansBox.value = val.slice(0, val.length - 1);
     });
     $("#AC").on('touchstart', function() {
         $("#AC").css("display", "none");
@@ -91,10 +94,19 @@ window.onload = () => {
     });
 };
 
-function set(display, computable) {
-    console.log(display, computable);
-    ansBox.value = ansBox.value + display;
-    formula += computable;
+function addFormula(opera) {
+    const display_computable = {
+        '×': '*',
+        '÷': '/'
+    };
+    console.log(opera);
+    ansBox.value += opera;
+    //修正
+    if (display_computable[opera]) {
+        formula += display_computable[opera];
+    } else {
+        formula += opera;
+    }
 }
 
 function calc() {

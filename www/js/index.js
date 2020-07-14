@@ -24,10 +24,6 @@
 var ansBox = document.getElementById("ansBox");
 var formula = "";
 
-/*
-@param display{string} 表示する数字 or 演算子
-@param computable{string} 計算する数字 or 演算子(特に演算子は表示と違うことがあるため)
- */
 //jQueryは読み込んでからじゃないと動かないのでonloadの後でイベント登録
 window.onload = () => {
     //設定
@@ -36,7 +32,7 @@ window.onload = () => {
     });
     //5ボタン
     $("#5_9").on('click', function() {
-        addFormula('5');
+
     });
     $("#5_9").on('touchstart', function() {
         $("#5_9").css("display", "none");
@@ -47,6 +43,7 @@ window.onload = () => {
         $("#5_9_pushed").css("display", "none");
         $("#5_9").css("display", "block");
         $("#suggest_5").css("display", "none");
+        addFormula('5');
     });
     //0ボタン
     $("#0_4").on('click', function() {
