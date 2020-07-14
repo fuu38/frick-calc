@@ -21,7 +21,8 @@
 フリックの実装
 その他もろもろ*/
 //設定ボタン
-window.standard = 30; //フリック検知距離　設定で弄れるように
+window.flickLengthflickLengthStandard = 30; //フリック検知距離　設定で弄れるように
+window.longPressStandard = 200; //長押し判定時間(ms)
 var ansBox = document.getElementById("ansBox");
 var formula = "";
 
@@ -50,7 +51,7 @@ window.onload = () => {
         console.log(diffY);
 
         $(".suggest-img").css("display", "none"); //一回サジェストを全部消す
-        if (Math.abs(diffX) < window.standard && Math.abs(diffY) < window.standard) {
+        if (Math.abs(diffX) < window.flickLengthStandard && Math.abs(diffY) < window.flickLengthStandard) {
             $("#suggest_5").css("display", "block");
         } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
             $("#suggest_6").css("display", "block");
@@ -70,7 +71,7 @@ window.onload = () => {
         const diffY = thisy - window.touchStartY;
         console.log(diffX);
         console.log(diffY);
-        if (Math.abs(diffX) < window.standard && Math.abs(diffY) < window.standard) {
+        if (Math.abs(diffX) < window.standard && Math.abs(diffY) < window.flickLengthStandard) {
             addFormula('5');
         } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
             addFormula('6');
@@ -107,7 +108,7 @@ window.onload = () => {
         console.log(diffY);
 
         $(".suggest-img").css("display", "none"); //一回サジェストを全部消す
-        if (Math.abs(diffX) < window.standard && Math.abs(diffY) < window.standard) {
+        if (Math.abs(diffX) < window.flickLengthStandard && Math.abs(diffY) < window.flickLengthStandard) {
             $("#suggest_0").css("display", "block");
         } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
             $("#suggest_1").css("display", "block");
@@ -127,7 +128,7 @@ window.onload = () => {
         const diffY = thisy - window.touchStartY;
         console.log(diffX);
         console.log(diffY);
-        if (Math.abs(diffX) < window.standard && Math.abs(diffY) < window.standard) {
+        if (Math.abs(diffX) < window.flickLengthStandard && Math.abs(diffY) < window.flickLengthStandard) {
             addFormula('0');
         } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
             addFormula('1');
@@ -165,7 +166,7 @@ window.onload = () => {
         console.log(diffY);
 
         $(".suggest-img").css("display", "none"); //一回サジェストを全部消す
-        if (Math.abs(diffX) < window.standard && Math.abs(diffY) < window.standard) {
+        if (Math.abs(diffX) < window.flickLengthStandard && Math.abs(diffY) < window.flickLengthStandard) {
             $("#suggest_add").css("display", "block");
         } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
             $("#suggest_sub").css("display", "block");
@@ -191,7 +192,7 @@ window.onload = () => {
         console.log(operands.includes(last));
         //直前が演算子でないなら演算子を追加
         if (!operands.includes(last)) {
-            if (Math.abs(diffX) < window.standard && Math.abs(diffY) < window.standard) {
+            if (Math.abs(diffX) < window.flickLengthStandard && Math.abs(diffY) < window.flickLengthStandard) {
                 addFormula('+');
             } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
                 addFormula('-');
@@ -231,7 +232,7 @@ window.onload = () => {
         console.log(diffY);
 
         $(".suggest-img").css("display", "none"); //一回サジェストを全部消す
-        if (Math.abs(diffX) < window.standard && Math.abs(diffY) < window.standard) {
+        if (Math.abs(diffX) < window.flickLengthStandard && Math.abs(diffY) < window.flickLengthStandard) {
             $("#suggest_del").css("display", "block");
         } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
             $("#suggest_AC").css("display", "block");
@@ -239,8 +240,8 @@ window.onload = () => {
             $("#suggest_C").css("display", "block");
         } else if (Math.abs(diffX) <= Math.abs(diffY) && Math.abs(diffY) === diffY) { //下フリック
             $("#suggest_equal").css("display", "block");
-        } else { //このキーは上フリックがないので、サジェストしない
-            $(".suggest-img").css("display", "none");
+        } else { //上フリック(該当なし)
+            $("#suggest_none").css("display", "block");
         }
     })
     $("#AC").on('touchend', function() {
@@ -251,7 +252,7 @@ window.onload = () => {
         const diffY = thisy - window.touchStartY;
         console.log(diffX);
         console.log(diffY);
-        if (Math.abs(diffX) < window.standard && Math.abs(diffY) < window.standard) {
+        if (Math.abs(diffX) < window.flickLengthStandard && Math.abs(diffY) < window.flickLengthStandard) {
             deleteLastCharOfFormula();
         } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
             formulaAllClear();
@@ -260,7 +261,6 @@ window.onload = () => {
         } else if (Math.abs(diffX) <= Math.abs(diffY) && Math.abs(diffY) === diffY) { //下フリック
             finallyCalc();
         } else { //上フリック(挙動なし)
-
         }
         $(".suggest-img").css("display", "none");
         window.touchStartX = 0;
