@@ -36,7 +36,7 @@ window.onload = () => {
     });
     //5ボタン
     $("#5_9").on('click', function() {
-        set('5', '5');
+        addFormula('5');
     });
     $("#5_9").on('touchstart', function() {
         $("#5_9").css("display", "none");
@@ -48,7 +48,7 @@ window.onload = () => {
     });
     //0ボタン
     $("#0_4").on('click', function() {
-        set('0', '0');
+        addFormula('0');
     });
     $("#0_4").on('touchstart', function() {
         $("#0_4").css("display", "none");
@@ -66,7 +66,7 @@ window.onload = () => {
         console.log(operands.includes(last));
         //直前が演算子でないなら演算子を追加
         if (!operands.includes(last)) {
-            set('+', '+');
+            addFormula('+');
         }
     });
     $("#operands").on('touchstart', function() {
@@ -95,10 +95,20 @@ window.onload = () => {
     });
 };
 
-function set(display, computable) {
-    console.log(display, computable);
-    ansBox.value += display;
-    formula += computable;
+function addFormula(opera) {
+    const display_computable = {
+        '×': '*',
+        '÷': '/'
+    };
+    console.log(opera);
+    ansBox.value += opera;
+    //修正
+    if (display_computable[opera]) {
+        formula += display_computable[opera];
+    } else {
+        formula += opera;
+    }
+
 }
 
 function calc() {
