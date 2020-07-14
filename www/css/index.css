@@ -52,3 +52,8 @@
             width: 33%;
             display: none;
         }
+        
+        .suggest-img {
+            display: none;
+            margin-top: 5vh;
+        }

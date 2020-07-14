@@ -41,10 +41,12 @@ window.onload = () => {
     $("#5_9").on('touchstart', function() {
         $("#5_9").css("display", "none");
         $("#5_9_pushed").css("display", "block");
+        $("#suggest_5").css("display", "block");
     });
     $("#5_9").on('touchend', function() {
         $("#5_9_pushed").css("display", "none");
         $("#5_9").css("display", "block");
+        $("#suggest_5").css("display", "none");
     });
     //0ボタン
     $("#0_4").on('click', function() {
@@ -108,7 +110,6 @@ function addFormula(opera) {
     } else {
         formula += opera;
     }
-
 }
 
 function calc() {
