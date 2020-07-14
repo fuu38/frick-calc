@@ -176,7 +176,7 @@ window.onload = () => {
         } else { //上フリック
             $("#suggest_by").css("display", "block");
         }
-    })
+    });
     $("#operands").on('touchend', function() {
         $(".suggest-img").css("display", "none"); //サジェスト削除
         var thisx = event.changedTouches[0].pageX;
@@ -214,41 +214,100 @@ window.onload = () => {
         console.log("func end!");
     });
     //ACボタン
-    $("#AC").on('click', function() {
-        var val = ansBox.value;
-        console.log(val);
-        console.log(typeof(val));
-        console.log(val.slice(0, val.length - 1));
-        ansBox.value = val.slice(0, val.length - 1);
-    });
-    $("#AC").on('touchstart', function() {
+    $("#AC").on('touchstart', function(event) {
+        window.touchStartX = event.changedTouches[0].pageX;
+        window.touchStartY = event.changedTouches[0].pageY;
+        console.log(window.touchStartX);
+        console.log(window.touchStartY);
         $("#AC").css("display", "none");
         $("#AC_pushed").css("display", "block");
+        $("#suggest_del").css("display", "block");
     });
+    $("#AC").on('touchmove', function(event) {
+        var thisx = event.changedTouches[0].pageX;
+        var thisy = event.changedTouches[0].pageY;
+        const diffX = thisx - window.touchStartX;
+        const diffY = thisy - window.touchStartY;
+        console.log(diffX);
+        console.log(diffY);
+
+        $(".suggest-img").css("display", "none"); //一回サジェストを全部消す
+        if (Math.abs(diffX) < window.standard && Math.abs(diffY) < window.standard) {
+            $("#suggest_del").css("display", "block");
+        } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
+            $("#suggest_AC").css("display", "block");
+        } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) === diffX) { //右フリック
+            $("#suggest_C").css("display", "block");
+        } else if (Math.abs(diffX) <= Math.abs(diffY) && Math.abs(diffY) === diffY) { //下フリック
+            $("#suggest_equal").css("display", "block");
+        } else { //このキーは上フリックがないので、サジェストしない
+            $(".suggest-img").css("display", "none");
+        }
+    })
     $("#AC").on('touchend', function() {
+        $(".suggest-img").css("display", "none"); //サジェスト削除
+        var thisx = event.changedTouches[0].pageX;
+        var thisy = event.changedTouches[0].pageY;
+        const diffX = thisx - window.touchStartX;
+        const diffY = thisy - window.touchStartY;
+        console.log(diffX);
+        console.log(diffY);
+        if (Math.abs(diffX) < window.standard && Math.abs(diffY) < window.standard) {
+            deleteLastCharOfFormula();
+        } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
+            formulaAllClear();
+        } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) === diffX) { //右フリック
+            formulaClear();
+        } else if (Math.abs(diffX) <= Math.abs(diffY) && Math.abs(diffY) === diffY) { //下フリック
+            finallyCalc();
+        } else { //上フリック(挙動なし)
+
+        }
+        $(".suggest-img").css("display", "none");
+        window.touchStartX = 0;
+        window.touxhStartY = 0;
         $("#AC_pushed").css("display", "none");
         $("#AC").css("display", "block");
+        console.log("func end!");
     });
 };
 
 function addFormula(opera) {
     const display_computable = {
-        '×': '*',
-        '÷': '/'
+        '*': '×',
+        '/': '÷'
     };
     console.log(opera);
-    ansBox.value += opera;
+    formula += opera;
     //修正
     if (display_computable[opera]) {
-        formula += display_computable[opera];
+        ansBox.value += display_computable[opera];
     } else {
-        formula += opera;
+        ansBox.value += opera;
     }
 }
 
-function calc() {
+function deleteLastCharOfFormula() {
+    let val = ansBox.value;
+    console.log(val.slice(0, val.length - 1));
+    ansBox.value = val.slice(0, val.length - 1);
+}
+
+function formulaAllClear() {
+    ansBox.value = "";
+    formula = "";
+}
+
+function formulaClear() {
+
+}
+
+function finallyCalc() {
     try {
         const answer = new Function("return " + formula)();
+        if (answer === void 0) { //式がないときにundefindが返るのでundefindチェック
+            return; //何も変更を加えず中断する
+        }
         ansBox.value = answer;
         console.log(answer);
     } catch (e) {
