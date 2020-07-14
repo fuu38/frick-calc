@@ -183,7 +183,7 @@ window.onload = () => {
         const diffY = thisy - window.touchStartY;
         console.log(diffX);
         console.log(diffY);
-        const operands = ['+', '-', '*', '/'];
+        const operands = ['+', '-', '*', '/', '.'];
         const last = formula.slice(-1);
         console.log(last);
         console.log(operands.includes(last));
