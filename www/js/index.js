@@ -71,7 +71,7 @@ window.onload = () => {
         console.log(diffX);
         console.log(diffY);
         if (Math.abs(diffX) < window.standard && Math.abs(diffY) < window.standard) {
-            $("#suggest_5").css("display", "block");
+            addFormula('5');
         } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
             addFormula('6');
         } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) === diffX) { //右フリック
