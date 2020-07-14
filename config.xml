@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.github.chaha1n" version="1.0.0">
-    <name>フリック電卓</name>
+    <name>片手電卓</name>
     <description>
-        Calculator which can use only one hand with flick
+        フリック入力で使える画期的な電卓！
     </description>
     <author email="chahaaaaan@gmail.com" href="https://chaha1n.github.io/">
     </author>
