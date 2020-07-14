@@ -311,6 +311,7 @@ function finallyCalc() {
         console.log(answer);
     } catch (e) {
         ansBox.value = "";
+        console.log(e);
         alert("式を計算できませんでした><");
         console.log(e);
     }
