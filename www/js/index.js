@@ -89,16 +89,61 @@ window.onload = () => {
         console.log("func end!");
     });
     //0ボタン
-    $("#0_4").on('click', function() {
-        addFormula('0');
-    });
-    $("#0_4").on('touchstart', function() {
+    $("#0_4").on('touchstart', function(event) {
+        window.touchStartX = event.changedTouches[0].pageX;
+        window.touchStartY = event.changedTouches[0].pageY;
+        console.log(window.touchStartX);
+        console.log(window.touchStartY);
         $("#0_4").css("display", "none");
         $("#0_4_pushed").css("display", "block");
+        $("#suggest_0").css("display", "block");
+    });
+    $('#0_4').on('touchmove', function(event) {
+        var thisx = event.changedTouches[0].pageX;
+        var thisy = event.changedTouches[0].pageY;
+        const diffX = thisx - window.touchStartX;
+        const diffY = thisy - window.touchStartY;
+        console.log(diffX);
+        console.log(diffY);
+
+        $(".suggest-img").css("display", "none"); //一回サジェストを全部消す
+        if (Math.abs(diffX) < window.standard && Math.abs(diffY) < window.standard) {
+            $("#suggest_0").css("display", "block");
+        } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
+            $("#suggest_1").css("display", "block");
+        } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) === diffX) { //右フリック
+            $("#suggest_3").css("display", "block");
+        } else if (Math.abs(diffX) <= Math.abs(diffY) && Math.abs(diffY) === diffY) { //下フリック
+            $("#suggest_4").css("display", "block");
+        } else { //上フリック
+            $("#suggest_2").css("display", "block");
+        }
     });
     $("#0_4").on('touchend', function() {
+        $(".suggest-img").css("display", "none"); //サジェスト削除
+        var thisx = event.changedTouches[0].pageX;
+        var thisy = event.changedTouches[0].pageY;
+        const diffX = thisx - window.touchStartX;
+        const diffY = thisy - window.touchStartY;
+        console.log(diffX);
+        console.log(diffY);
+        if (Math.abs(diffX) < window.standard && Math.abs(diffY) < window.standard) {
+            addFormula('0');
+        } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
+            addFormula('1');
+        } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) === diffX) { //右フリック
+            addFormula('3');
+        } else if (Math.abs(diffX) <= Math.abs(diffY) && Math.abs(diffY) === diffY) { //上フリック
+            addFormula('4');
+        } else { //下フリック
+            addFormula('2');
+        }
+        $(".suggest-img").css("display", "none");
+        window.touchStartX = 0;
+        window.touxhStartY = 0;
         $("#0_4_pushed").css("display", "none");
         $("#0_4").css("display", "block");
+        console.log("func end!");
     });
     //演算子ボタン
     $("#operands").on('click', function() {
