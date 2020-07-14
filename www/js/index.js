@@ -16,12 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-/*
-計算の実装
-フリックの実装
-その他もろもろ*/
-//設定ボタン
-window.flickLengthflickLengthStandard = 30; //フリック検知距離　設定で弄れるように
+
+//設定可能項目(ストレージ書き込み権限まわり)
+window.flickLengthStandard = 30; //フリック検知距離　設定で弄れるように
 window.longPressStandard = 200; //長押し判定時間(ms)
 var ansBox = document.getElementById("ansBox");
 var formula = "";
@@ -71,7 +68,7 @@ window.onload = () => {
         const diffY = thisy - window.touchStartY;
         console.log(diffX);
         console.log(diffY);
-        if (Math.abs(diffX) < window.standard && Math.abs(diffY) < window.flickLengthStandard) {
+        if (Math.abs(diffX) < window.flickLengthStandard && Math.abs(diffY) < window.flickLengthStandard) {
             addFormula('5');
         } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
             addFormula('6');
@@ -270,6 +267,8 @@ window.onload = () => {
         console.log("func end!");
     });
 };
+
+function
 
 function addFormula(opera) {
     const display_computable = {
