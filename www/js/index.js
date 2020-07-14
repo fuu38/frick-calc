@@ -290,7 +290,7 @@ function deleteLastCharOfFormula() {
 
     console.log(ansBox.value.slice(0, ansBox.value.length - 1));
     ansBox.value = ansBox.value.slice(0, ansBox.value.length - 1);
-    formula = formula.slice(0, formula.length - 1);
+    formula = formula.slice(0, formula.length - 1)
 }
 
 function formulaAllClear() {

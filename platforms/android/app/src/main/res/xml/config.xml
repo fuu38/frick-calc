@@ -4,9 +4,9 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <name>フリック電卓</name>
+    <name>片手電卓</name>
     <description>
-        Calculator which can use only one hand with flick
+        フリック入力で使える画期的な電卓！
     </description>
     <author email="chahaaaaan@gmail.com" href="https://chaha1n.github.io/">
     </author>

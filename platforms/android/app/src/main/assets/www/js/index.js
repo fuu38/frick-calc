@@ -191,7 +191,6 @@ window.onload = () => {
         console.log(operands.includes(last));
         //直前が演算子でないなら演算子を追加
         if (!operands.includes(last)) {
-
             if (Math.abs(diffX) < window.standard && Math.abs(diffY) < window.standard) {
                 addFormula('+');
             } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
@@ -288,9 +287,10 @@ function addFormula(opera) {
 }
 
 function deleteLastCharOfFormula() {
-    let val = ansBox.value;
-    console.log(val.slice(0, val.length - 1));
-    ansBox.value = val.slice(0, val.length - 1);
+
+    console.log(ansBox.value.slice(0, ansBox.value.length - 1));
+    ansBox.value = ansBox.value.slice(0, ansBox.value.length - 1);
+    formula = formula.slice(0, formula.length - 1);
 }
 
 function formulaAllClear() {

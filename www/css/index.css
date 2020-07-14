@@ -18,7 +18,7 @@
         
         footer {
             text-align: center;
-            background-color: white;
+            background-color: #000000;
             position: absolute;
             bottom: 0;
             right: 0;
@@ -27,12 +27,13 @@
         #ansBox {
             text-align: center;
             font-size: x-large;
-            background-color: white;
+            background-color: #000000;
             margin-top: 30vh;
+            color: #FFFFFF;
         }
         
         #body {
-            background-color: silver;
+            background-color: #000000;
         }
         
         #to_Setting {
