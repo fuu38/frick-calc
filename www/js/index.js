@@ -79,7 +79,11 @@ window.onload = () => {
     });
     //ACボタン
     $("#AC").on('click', function() {
-        ansBox.value = "";
+        var val = ansBox.value;
+        console.log(val);
+        console.log(typeof(val));
+        console.log(val.slice(0, val.length - 1));
+        ansBox.value = val.slice(0, val.length - 1);
     });
     $("#AC").on('touchstart', function() {
         $("#AC").css("display", "none");
@@ -93,7 +97,7 @@ window.onload = () => {
 
 function set(display, computable) {
     console.log(display, computable);
-    ansBox.value = ansBox.value + display;
+    ansBox.value += display;
     formula += computable;
 }
 

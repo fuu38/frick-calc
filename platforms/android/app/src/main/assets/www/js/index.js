@@ -28,6 +28,68 @@ var formula = "";
 @param display{string} 表示する数字 or 演算子
 @param computable{string} 計算する数字 or 演算子(特に演算子は表示と違うことがあるため)
  */
+//jQueryは読み込んでからじゃないと動かないのでonloadの後でイベント登録
+window.onload = () => {
+    //設定
+    $("#to_Setting").on('click', function() {
+        window.location.href = "setting.html"
+    });
+    //5ボタン
+    $("#5_9").on('click', function() {
+        set('5', '5');
+    });
+    $("#5_9").on('touchstart', function() {
+        $("#5_9").css("display", "none");
+        $("#5_9_pushed").css("display", "block");
+    });
+    $("#5_9").on('touchend', function() {
+        $("#5_9_pushed").css("display", "none");
+        $("#5_9").css("display", "block");
+    });
+    //0ボタン
+    $("#0_4").on('click', function() {
+        set('0', '0');
+    });
+    $("#0_4").on('touchstart', function() {
+        $("#0_4").css("display", "none");
+        $("#0_4_pushed").css("display", "block");
+    });
+    $("#0_4").on('touchend', function() {
+        $("#0_4_pushed").css("display", "none");
+        $("#0_4").css("display", "block");
+    });
+    //演算子ボタン
+    $("#operands").on('click', function() {
+        const operands = ['+', '-', '*', '/'];
+        const last = formula.slice(-1);
+        console.log(last);
+        console.log(operands.includes(last));
+        //直前が演算子でないなら演算子を追加
+        if (!operands.includes(last)) {
+            set('+', '+');
+        }
+    });
+    $("#operands").on('touchstart', function() {
+        $("#operands").css("display", "none");
+        $("#operands_pushed").css("display", "block");
+    });
+    $("#operands").on('touchend', function() {
+        $("#operands_pushed").css("display", "none");
+        $("#operands").css("display", "block");
+    });
+    //ACボタン
+    $("#AC").on('click', function() {
+        ansBox.value = "";
+    });
+    $("#AC").on('touchstart', function() {
+        $("#AC").css("display", "none");
+        $("#AC_pushed").css("display", "block");
+    });
+    $("#AC").on('touchend', function() {
+        $("#AC_pushed").css("display", "none");
+        $("#AC").css("display", "block");
+    });
+};
 
 function set(display, computable) {
     console.log(display, computable);
@@ -45,29 +107,4 @@ function calc() {
         alert("式を計算できませんでした><");
         console.log(e);
     }
-}
-
-document.getElementById("to_Setting").addEventListener('click', function() {
-    window.location.href = "setting.html"
-});
-//5ボタン
-document.getElementById("5_9").addEventListener('click', function() {
-    set('5', '5');
-});
-document.getElementById("0_4").addEventListener('click', function() {
-    set('0', '0');
-});
-document.getElementById("operands").addEventListener('click', function() {
-    const operands = ['+', '-', '*', '/'];
-    const last = formula.slice(-1);
-    console.log(last);
-    console.log(operands.includes(last));
-    if (!operands.includes(last)) {
-        set('+', '+');
-    }
-
-});
-
-document.getElementById("AC").addEventListener('click', function() {
-    ansBox.value = "";
-});
+};
