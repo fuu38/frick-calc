@@ -29,7 +29,11 @@
             font-size: x-large;
             background-color: #222222;
             margin-top: 30vh;
-            color: #FFFFFF;
+            color: white;
+            border-bottom: 1px solid #cccccc;
+            border-right: none;
+            border-left: none;
+            border-top: none;
         }
         
         #body {
