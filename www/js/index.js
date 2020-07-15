@@ -33,8 +33,6 @@ window.onload = () => {
     $("#5_9").on('touchstart', function(event) {
         window.touchStartX = event.changedTouches[0].pageX;
         window.touchStartY = event.changedTouches[0].pageY;
-        console.log(window.touchStartX);
-        console.log(window.touchStartY);
         $("#5_9").css("display", "none");
         $("#5_9_pushed").css("display", "block");
         $("#suggest_5").css("display", "block");
@@ -44,9 +42,6 @@ window.onload = () => {
         var thisy = event.changedTouches[0].pageY;
         const diffX = thisx - window.touchStartX;
         const diffY = thisy - window.touchStartY;
-        console.log(diffX);
-        console.log(diffY);
-
         $(".suggest-img").css("display", "none"); //一回サジェストを全部消す
         if (Math.abs(diffX) < window.flickLengthStandard && Math.abs(diffY) < window.flickLengthStandard) {
             $("#suggest_5").css("display", "block");
@@ -66,8 +61,6 @@ window.onload = () => {
         var thisy = event.changedTouches[0].pageY;
         const diffX = thisx - window.touchStartX;
         const diffY = thisy - window.touchStartY;
-        console.log(diffX);
-        console.log(diffY);
         if (Math.abs(diffX) < window.flickLengthStandard && Math.abs(diffY) < window.flickLengthStandard) {
             addFormula('5');
         } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
@@ -90,8 +83,6 @@ window.onload = () => {
     $("#0_4").on('touchstart', function(event) {
         window.touchStartX = event.changedTouches[0].pageX;
         window.touchStartY = event.changedTouches[0].pageY;
-        console.log(window.touchStartX);
-        console.log(window.touchStartY);
         $("#0_4").css("display", "none");
         $("#0_4_pushed").css("display", "block");
         $("#suggest_0").css("display", "block");
@@ -101,9 +92,6 @@ window.onload = () => {
         var thisy = event.changedTouches[0].pageY;
         const diffX = thisx - window.touchStartX;
         const diffY = thisy - window.touchStartY;
-        console.log(diffX);
-        console.log(diffY);
-
         $(".suggest-img").css("display", "none"); //一回サジェストを全部消す
         if (Math.abs(diffX) < window.flickLengthStandard && Math.abs(diffY) < window.flickLengthStandard) {
             $("#suggest_0").css("display", "block");
@@ -123,8 +111,6 @@ window.onload = () => {
         var thisy = event.changedTouches[0].pageY;
         const diffX = thisx - window.touchStartX;
         const diffY = thisy - window.touchStartY;
-        console.log(diffX);
-        console.log(diffY);
         if (Math.abs(diffX) < window.flickLengthStandard && Math.abs(diffY) < window.flickLengthStandard) {
             addFormula('0');
         } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
@@ -148,8 +134,6 @@ window.onload = () => {
     $("#operands").on('touchstart', function(event) {
         window.touchStartX = event.changedTouches[0].pageX;
         window.touchStartY = event.changedTouches[0].pageY;
-        console.log(window.touchStartX);
-        console.log(window.touchStartY);
         $("#operands").css("display", "none");
         $("#operands_pushed").css("display", "block");
         $("#suggest_add").css("display", "block");
@@ -159,9 +143,6 @@ window.onload = () => {
         var thisy = event.changedTouches[0].pageY;
         const diffX = thisx - window.touchStartX;
         const diffY = thisy - window.touchStartY;
-        console.log(diffX);
-        console.log(diffY);
-
         $(".suggest-img").css("display", "none"); //一回サジェストを全部消す
         if (Math.abs(diffX) < window.flickLengthStandard && Math.abs(diffY) < window.flickLengthStandard) {
             $("#suggest_add").css("display", "block");
@@ -181,27 +162,18 @@ window.onload = () => {
         var thisy = event.changedTouches[0].pageY;
         const diffX = thisx - window.touchStartX;
         const diffY = thisy - window.touchStartY;
-        console.log(diffX);
-        console.log(diffY);
-        const operands = ['+', '-', '*', '/', '.'];
-        const last = formula.slice(-1);
-        console.log(last);
-        console.log(operands.includes(last));
         //直前が演算子でないなら演算子を追加
-        if (!operands.includes(last)) {
-            if (Math.abs(diffX) < window.flickLengthStandard && Math.abs(diffY) < window.flickLengthStandard) {
-                addFormula('+');
-            } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
-                addFormula('-');
-            } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) === diffX) { //右フリック
-                addFormula('/');
-            } else if (Math.abs(diffX) <= Math.abs(diffY) && Math.abs(diffY) === diffY) { //上フリック
-                addFormula('.');
-            } else { //下フリック
-                addFormula('*');
-            }
-        } else {
-            console.log("Cannot append operands because an operand found before this query.");
+
+        if (Math.abs(diffX) < window.flickLengthStandard && Math.abs(diffY) < window.flickLengthStandard) {
+            addFormula('+');
+        } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
+            addFormula('-');
+        } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) === diffX) { //右フリック
+            addFormula('/');
+        } else if (Math.abs(diffX) <= Math.abs(diffY) && Math.abs(diffY) === diffY) { //上フリック
+            addFormula('.');
+        } else { //下フリック
+            addFormula('*');
         }
         $(".suggest-img").css("display", "none");
         window.touchStartX = 0;
@@ -214,8 +186,6 @@ window.onload = () => {
     $("#AC").on('touchstart', function(event) {
         window.touchStartX = event.changedTouches[0].pageX;
         window.touchStartY = event.changedTouches[0].pageY;
-        console.log(window.touchStartX);
-        console.log(window.touchStartY);
         $("#AC").css("display", "none");
         $("#AC_pushed").css("display", "block");
         $("#suggest_del").css("display", "block");
@@ -225,9 +195,6 @@ window.onload = () => {
         var thisy = event.changedTouches[0].pageY;
         const diffX = thisx - window.touchStartX;
         const diffY = thisy - window.touchStartY;
-        console.log(diffX);
-        console.log(diffY);
-
         $(".suggest-img").css("display", "none"); //一回サジェストを全部消す
         if (Math.abs(diffX) < window.flickLengthStandard && Math.abs(diffY) < window.flickLengthStandard) {
             $("#suggest_del").css("display", "block");
@@ -247,8 +214,6 @@ window.onload = () => {
         var thisy = event.changedTouches[0].pageY;
         const diffX = thisx - window.touchStartX;
         const diffY = thisy - window.touchStartY;
-        console.log(diffX);
-        console.log(diffY);
         if (Math.abs(diffX) < window.flickLengthStandard && Math.abs(diffY) < window.flickLengthStandard) {
             deleteLastCharOfFormula();
         } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
@@ -275,21 +240,41 @@ function addFormula(opera) {
         '*': '×',
         '/': '÷'
     };
-    console.log(opera);
-    formula += opera;
     //修正
-    if (display_computable[opera]) {
-        ansBox.value += display_computable[opera];
+    const operands = ['+', '-', '*', '/', '.'];
+    const last = formula.slice(-1);
+    console.log(last);
+    console.log(formula);
+    console.log(operands.includes(opera));
+    if (!formula && (operands.includes(opera))) {
+        //空文字かnull && 先頭に来てはいけない文字
+        console.log("Can't use operand as first character of formula.");
+    } else if (operands.includes(last) && operands.includes(opera)) {
+        //前が演算子で演算子の追加
+        console.log("Can't use operand after operand,so replace to newer one.");
+        formula = formula.slice(0, formula.length - 1) + opera;
+        ansBox.value = ansBox.value.slice(0, ansBox.value.length - 1);
+        ansBox.value += display_computable[opera] ? display_computable[opera] : opera;
+    } else if (last === '0' && !operands.includes(opera)) {
+        //前が0で、"."以外の文字を付け足すとき
+        console.log("To prevent to be interpreted formula as Octal number,removed '0' from first character of the operator.");
+        formula = formula.slice(0, formula.length - 1) + opera;
+        ansBox.value = ansBox.value.slice(0, ansBox.value.length - 1);
+        ansBox.value += display_computable[opera] ? display_computable[opera] : opera;
     } else {
-        ansBox.value += opera;
+        console.log("Append success!");
+        formula += opera;
+        if (display_computable[opera]) {
+            ansBox.value += display_computable[opera];
+        } else {
+            ansBox.value += opera;
+        }
     }
 }
 
 function deleteLastCharOfFormula() {
-
-    console.log(ansBox.value.slice(0, ansBox.value.length - 1));
     ansBox.value = ansBox.value.slice(0, ansBox.value.length - 1);
-    formula = formula.slice(0, formula.length - 1)
+    formula = formula.slice(0, formula.length - 1);
 }
 
 function formulaAllClear() {
@@ -308,11 +293,9 @@ function finallyCalc() {
             return; //何も変更を加えず中断する
         }
         ansBox.value = answer;
-        console.log(answer);
     } catch (e) {
         ansBox.value = "";
         console.log(e);
         alert("式を計算できませんでした><");
-        console.log(e);
     }
 };
