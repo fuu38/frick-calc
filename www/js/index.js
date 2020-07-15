@@ -260,7 +260,7 @@ function addFormula(opera) {
         ansBox.value = ansBox.value.slice(0, ansBox.value.length - 1);
         ansBox.value += display_computable[opera] ? display_computable[opera] : opera;
         return;
-    } else if (last === '0' && !operands.includes(opera) && ((operands.includes(formula.slice(-2, -1)) && formula.slice(-2, -1) !== '.') || formula.slice(-2, -1) === "")) { //ウンチコードリファクタしろカス　
+    } else if (last === '0' && !operands.includes(opera) && ((operands.includes(formula.slice(-2, -1)) && formula.slice(-2, -1) !== '.') || formula.slice(-2, -1) === "")) { //うんち条件式、リファクタしろカス　
         //前が0 かつ　追加するのが演算子ではない　かつ　((二つ前が小数点以外の演算子)　または　空文字(つまり先頭)) => 先頭か演算子の直後は、0を二個以上連続できないようにする
         console.log("To prevent to be interpreted formula as Octal number,removed '0' from first character of the operator.");
         formula = formula.slice(0, formula.length - 1) + opera;
@@ -290,7 +290,21 @@ function formulaAllClear() {
 }
 
 function formulaClear() {
-
+    const operands = ['+', '-', '*', '/'];
+    if (!formula) {
+        return;
+    } else if (operands.includes(formula.slice(-1))) { //最後が演算子なら1個だけ消す
+        ansBox.value = ansBox.value.slice(0, ansBox.value.length - 1);
+        formula = formula.slice(0, formula.length - 1);
+    } else { //演算子が出るか式が無くなるまで消す
+        while (true) {
+            ansBox.value = ansBox.value.slice(0, ansBox.value.length - 1);
+            formula = formula.slice(0, formula.length - 1);
+            if (operands.includes(formula.slice(-1)) || !formula) {
+                break;
+            }
+        }
+    }
 }
 
 function finallyCalc() {
