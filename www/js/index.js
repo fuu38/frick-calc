@@ -242,25 +242,31 @@ function addFormula(opera) {
     };
     //修正
     const operands = ['+', '-', '*', '/', '.'];
+    console.log(typeof(formula));
+    console.log(formula);
     const last = formula.slice(-1);
     console.log(last);
+    console.log(ansBox.value);
     console.log(formula);
     console.log(operands.includes(opera));
     if (!formula && (operands.includes(opera))) {
         //空文字かnull && 先頭に来てはいけない文字
         console.log("Can't use operand as first character of formula.");
+        return;
     } else if (operands.includes(last) && operands.includes(opera)) {
         //前が演算子で演算子の追加
         console.log("Can't use operand after operand,so replace to newer one.");
         formula = formula.slice(0, formula.length - 1) + opera;
         ansBox.value = ansBox.value.slice(0, ansBox.value.length - 1);
         ansBox.value += display_computable[opera] ? display_computable[opera] : opera;
+        return;
     } else if (last === '0' && !operands.includes(opera)) {
         //前が0で、"."以外の文字を付け足すとき
         console.log("To prevent to be interpreted formula as Octal number,removed '0' from first character of the operator.");
         formula = formula.slice(0, formula.length - 1) + opera;
         ansBox.value = ansBox.value.slice(0, ansBox.value.length - 1);
         ansBox.value += display_computable[opera] ? display_computable[opera] : opera;
+        return;
     } else {
         console.log("Append success!");
         formula += opera;
@@ -269,6 +275,7 @@ function addFormula(opera) {
         } else {
             ansBox.value += opera;
         }
+        return;
     }
 }
 
@@ -287,14 +294,20 @@ function formulaClear() {
 }
 
 function finallyCalc() {
+    console.log(formula);
+    console.log(ansBox.value);
     try {
         const answer = new Function("return " + formula)();
         if (answer === void 0) { //式がないときにundefindが返るのでundefindチェック
+            ansBox.value = "";
+            formula = "";
             return; //何も変更を加えず中断する
         }
-        ansBox.value = answer;
+        ansBox.value = String(answer);
+        formula = String(answer);
     } catch (e) {
         ansBox.value = "";
+        formula = "";
         console.log(e);
         alert("式を計算できませんでした><");
     }
