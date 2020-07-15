@@ -260,8 +260,8 @@ function addFormula(opera) {
         ansBox.value = ansBox.value.slice(0, ansBox.value.length - 1);
         ansBox.value += display_computable[opera] ? display_computable[opera] : opera;
         return;
-    } else if (last === '0' && !operands.includes(opera)) {
-        //前が0で、"."以外の文字を付け足すとき
+    } else if (last === '0' && !operands.includes(opera) && ((operands.includes(formula.slice(-2, -1)) && formula.slice(-2, -1) !== '.') || formula.slice(-2, -1) === "")) { //ウンチコードリファクタしろカス　
+        //前が0 かつ　追加するのが演算子ではない　かつ　((二つ前が小数点以外の演算子)　または　空文字(つまり先頭)) => 先頭か演算子の直後は、0を二個以上連続できないようにする
         console.log("To prevent to be interpreted formula as Octal number,removed '0' from first character of the operator.");
         formula = formula.slice(0, formula.length - 1) + opera;
         ansBox.value = ansBox.value.slice(0, ansBox.value.length - 1);
