@@ -320,7 +320,12 @@ function finallyCalc() {
         if (answer === void 0) { //式がないときにundefindが返るのでundefindチェック
             ansBox.value = "";
             formula = "";
-            return; //何も変更を加えず中断する
+            return; //何も変更を加えず中断する(式が不正というよりは単に操作ミスなので)
+        }
+        if (isNaN(answer) || !isFinite(answer)) { //isNaNはNaNの時true(当然)、isFiniteはInfの時true(有限ですか？なので)を返す。
+            ansBox.value = "";
+            formula = "";
+            alert("式を計算できませんでした><");
         }
         ansBox.value = String(answer);
         formula = String(answer);

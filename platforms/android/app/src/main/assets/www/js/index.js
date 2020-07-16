@@ -22,6 +22,7 @@ window.flickLengthStandard = 30; //フリック検知距離　設定で弄れる
 window.longPressStandard = 200; //長押し判定時間(ms)
 var ansBox = document.getElementById("ansBox");
 var formula = "";
+var deletIntervalHolder;
 
 //jQueryは読み込んでからじゃないと動かないのでonloadの後でイベント登録
 window.onload = () => {
@@ -189,6 +190,7 @@ window.onload = () => {
         $("#AC").css("display", "none");
         $("#AC_pushed").css("display", "block");
         $("#suggest_del").css("display", "block");
+        deletIntervalHolder = setInterval(deleteLastCharOfFormula, 100);
     });
     $("#AC").on('touchmove', function(event) {
         var thisx = event.changedTouches[0].pageX;
@@ -198,6 +200,7 @@ window.onload = () => {
         $(".suggest-img").css("display", "none"); //一回サジェストを全部消す
         if (Math.abs(diffX) < window.flickLengthStandard && Math.abs(diffY) < window.flickLengthStandard) {
             $("#suggest_del").css("display", "block");
+            return;
         } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) !== diffX) { //左フリック
             $("#suggest_AC").css("display", "block");
         } else if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) === diffX) { //右フリック
@@ -207,8 +210,10 @@ window.onload = () => {
         } else { //上フリック(該当なし)
             $("#suggest_none").css("display", "block");
         }
+        clearInterval(deletIntervalHolder);
     })
     $("#AC").on('touchend', function() {
+        clearInterval(deletIntervalHolder);
         $(".suggest-img").css("display", "none"); //サジェスト削除
         var thisx = event.changedTouches[0].pageX;
         var thisy = event.changedTouches[0].pageY;
