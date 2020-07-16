@@ -71,4 +71,9 @@ footer {
 
 .logArea {
     display: none;
+    overflow: auto;
+}
+
+.log-text {
+    color: white;
 }

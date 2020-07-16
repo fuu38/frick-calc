@@ -252,8 +252,6 @@ window.onload = () => {
     });
 };
 
-
-
 function addFormula(opera) {
     const display_computable = {
         '*': '×',
@@ -343,6 +341,7 @@ function finallyCalc() {
         }
         ansBox.value = String(answer);
         formula = String(answer);
+        $(".logArea").append("<h3 class=\"log-text\">" + String(answer) + "</h3>");
     } catch (e) {
         ansBox.value = "";
         formula = "";
