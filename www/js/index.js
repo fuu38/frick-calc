@@ -236,6 +236,20 @@ window.onload = () => {
         $("#AC").css("display", "block");
         console.log("func end!");
     });
+    $("#showFormulaLog").on('click', function() {
+        console.log("tolog");
+        $(".logArea").css("display", "block");
+        $(".flick-keys-default").css("display", "none");
+        $("#showFormulaLog").css("display", "none");
+        $("#backToCalc").css("display", "block");
+    });
+    $("#backToCalc").on("click", function() {
+        console.log("tocalc");
+        $(".logArea").css("display", "none");
+        $(".flick-keys-default").css("display", "block");
+        $("#showFormulaLog").css("display", "block");
+        $("#backToCalc").css("display", "none");
+    });
 };
 
 
