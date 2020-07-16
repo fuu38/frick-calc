@@ -236,9 +236,21 @@ window.onload = () => {
         $("#AC").css("display", "block");
         console.log("func end!");
     });
+    $("#showFormulaLog").on('click', function() {
+        console.log("tolog");
+        $(".logArea").css("display", "block");
+        $(".flick-keys-default").css("display", "none");
+        $("#showFormulaLog").css("display", "none");
+        $("#backToCalc").css("display", "block");
+    });
+    $("#backToCalc").on("click", function() {
+        console.log("tocalc");
+        $(".logArea").css("display", "none");
+        $(".flick-keys-default").css("display", "block");
+        $("#showFormulaLog").css("display", "block");
+        $("#backToCalc").css("display", "none");
+    });
 };
-
-
 
 function addFormula(opera) {
     const display_computable = {
@@ -329,6 +341,7 @@ function finallyCalc() {
         }
         ansBox.value = String(answer);
         formula = String(answer);
+        $(".logArea").append("<h3 class=\"log-text\">" + String(answer) + "</h3>");
     } catch (e) {
         ansBox.value = "";
         formula = "";

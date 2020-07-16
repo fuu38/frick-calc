@@ -29,43 +29,48 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="msapplication-tap-highlight" content="no">
-    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
     <title>FrickCalc</title>
 </head>
 
 <body id="body">
-
     <div class="container">
         <div class="row">
             <textarea wrap="soft" class="col" type="text" id="ansBox" disabled placeholder="式"></textarea>
         </div>
         <div class="row">
+            <img src="img/showFormulaLog.png" id="showFormulaLog" />
+            <img src="img/backToCalc.png" id="backToCalc" />
+            <div class="col-10"></div>
+        </div>
+        <div class="logArea"></div>
+        <div class="row">
             <div class="col-4"></div>
-            <img src="img/suggest_0.png" class="suggest-img col" id="suggest_0">
-            <img src="img/suggest_1.png" class="suggest-img col" id="suggest_1">
-            <img src="img/suggest_2.png" class="suggest-img col" id="suggest_2">
-            <img src="img/suggest_3.png" class="suggest-img col" id="suggest_3">
-            <img src="img/suggest_4.png" class="suggest-img col" id="suggest_4">
-            <img src="img/suggest_5.png" class="suggest-img col" id="suggest_5">
-            <img src="img/suggest_6.png" class="suggest-img col" id="suggest_6">
-            <img src="img/suggest_7.png" class="suggest-img col" id="suggest_7">
-            <img src="img/suggest_8.png" class="suggest-img col" id="suggest_8">
-            <img src="img/suggest_9.png" class="suggest-img col" id="suggest_9">
-            <img src="img/suggest_+.png" class="suggest-img col" id="suggest_add">
-            <img src="img/suggest_-.png" class="suggest-img col" id="suggest_sub">
-            <img src="img/suggest_div.png" class="suggest-img col" id="suggest_div">
-            <img src="img/suggest_by.png" class="suggest-img col" id="suggest_by">
-            <img src="img/suggest_del.png" class="suggest-img col" id="suggest_del">
-            <img src="img/suggest_dot.png" class="suggest-img col" id="suggest_dot">
-            <img src="img/suggest_AC.png" class="suggest-img col" id="suggest_AC">
-            <img src="img/suggest_C.png" class="suggest-img col" id="suggest_C">
-            <img src="img/suggest_=.png" class="suggest-img col" id="suggest_equal">
-            <img src="img/suggest_none.png" class="suggest-img col" id="suggest_none">
+            <img src="img/suggest_0.png" class="suggest-img col" id="suggest_0" />
+            <img src="img/suggest_1.png" class="suggest-img col" id="suggest_1" />
+            <img src="img/suggest_2.png" class="suggest-img col" id="suggest_2" />
+            <img src="img/suggest_3.png" class="suggest-img col" id="suggest_3" />
+            <img src="img/suggest_4.png" class="suggest-img col" id="suggest_4" />
+            <img src="img/suggest_5.png" class="suggest-img col" id="suggest_5" />
+            <img src="img/suggest_6.png" class="suggest-img col" id="suggest_6" />
+            <img src="img/suggest_7.png" class="suggest-img col" id="suggest_7" />
+            <img src="img/suggest_8.png" class="suggest-img col" id="suggest_8" />
+            <img src="img/suggest_9.png" class="suggest-img col" id="suggest_9" />
+            <img src="img/suggest_+.png" class="suggest-img col" id="suggest_add" />
+            <img src="img/suggest_-.png" class="suggest-img col" id="suggest_sub" />
+            <img src="img/suggest_div.png" class="suggest-img col" id="suggest_div" />
+            <img src="img/suggest_by.png" class="suggest-img col" id="suggest_by" />
+            <img src="img/suggest_del.png" class="suggest-img col" id="suggest_del" />
+            <img src="img/suggest_dot.png" class="suggest-img col" id="suggest_dot" />
+            <img src="img/suggest_AC.png" class="suggest-img col" id="suggest_AC" />
+            <img src="img/suggest_C.png" class="suggest-img col" id="suggest_C" />
+            <img src="img/suggest_=.png" class="suggest-img col" id="suggest_equal" />
+            <img src="img/suggest_none.png" class="suggest-img col" id="suggest_none" />
             <div class="col-4"></div>
         </div>
     </div>
@@ -74,17 +79,17 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-2"></div>
-                <img src="img/5_9_pushed.png" id="5_9_pushed" class="col ml-5 mb-4 flick-keys-pushed">
-                <img src="img/5_9.png" id="5_9" class="col ml-5 mb-4 flick-keys-default">
-                <img src="img/AC_pushed.png" id="AC_pushed" class="col mr-2 mb-4 flick-keys-pushed">
-                <img src="img/AC.png" id="AC" class="col mb-4 mr-2 flick-keys-default">
+                <img src="img/5_9_pushed.png" id="5_9_pushed" class="col ml-5 mb-4 flick-keys-pushed" />
+                <img src="img/5_9.png" id="5_9" class="col ml-5 mb-4 flick-keys-default" />
+                <img src="img/AC_pushed.png" id="AC_pushed" class="col mr-2 mb-4 flick-keys-pushed" />
+                <img src="img/AC.png" id="AC" class="col mb-4 mr-2 flick-keys-default" />
             </div>
             <div class="row">
                 <div class="col-2"></div>
-                <img src="img/0_4_pushed.png" id="0_4_pushed" class="col ml-5 mb-5 flick-keys-pushed">
-                <img src="img/0_4.png" id="0_4" class="col ml-5 mb-5 flick-keys-default">
-                <img src="img/operands_pushed.png" id="operands_pushed" class="col mb-5 mr-2 flick-keys-pushed">
-                <img src="img/operands.png " id="operands" class="col mb-5 mr-2 flick-keys-default">
+                <img src="img/0_4_pushed.png" id="0_4_pushed" class="col ml-5 mb-5 flick-keys-pushed" />
+                <img src="img/0_4.png" id="0_4" class="col ml-5 mb-5 flick-keys-default" />
+                <img src="img/operands_pushed.png" id="operands_pushed" class="col mb-5 mr-2 flick-keys-pushed" />
+                <img src="img/operands.png " id="operands" class="col mb-5 mr-2 flick-keys-default" />
             </div>
         </div>
     </footer>

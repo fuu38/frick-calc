@@ -55,3 +55,25 @@ footer {
     display: none;
     margin-top: 5vh;
 }
+
+#showFormulaLog {
+    height: 1.5em;
+    width: auto;
+    margin: 2vw;
+}
+
+#backToCalc {
+    height: 1.5em;
+    width: auto;
+    margin: 2vw;
+    display: none;
+}
+
+.logArea {
+    display: none;
+}
+
+.log-text {
+    color: white;
+    border: solid 1px white;
+}
