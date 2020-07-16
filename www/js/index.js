@@ -78,7 +78,6 @@ window.onload = () => {
         window.touxhStartY = 0;
         $("#5_9_pushed").css("display", "none");
         $("#5_9").css("display", "block");
-        console.log("func end!");
     });
     //0ボタン
     $("#0_4").on('touchstart', function(event) {
@@ -128,7 +127,6 @@ window.onload = () => {
         window.touxhStartY = 0;
         $("#0_4_pushed").css("display", "none");
         $("#0_4").css("display", "block");
-        console.log("func end!");
     });
     //演算子ボタン
 
@@ -181,7 +179,6 @@ window.onload = () => {
         window.touxhStartY = 0;
         $("#operands_pushed").css("display", "none");
         $("#operands").css("display", "block");
-        console.log("func end!");
     });
     //ACボタン
     $("#AC").on('touchstart', function(event) {
@@ -234,17 +231,14 @@ window.onload = () => {
         window.touxhStartY = 0;
         $("#AC_pushed").css("display", "none");
         $("#AC").css("display", "block");
-        console.log("func end!");
     });
     $("#showFormulaLog").on('click', function() {
-        console.log("tolog");
         $(".logArea").css("display", "block");
         $(".flick-keys-default").css("display", "none");
         $("#showFormulaLog").css("display", "none");
         $("#backToCalc").css("display", "block");
     });
     $("#backToCalc").on("click", function() {
-        console.log("tocalc");
         $(".logArea").css("display", "none");
         $(".flick-keys-default").css("display", "block");
         $("#showFormulaLog").css("display", "block");
@@ -259,33 +253,23 @@ function addFormula(opera) {
     };
     //修正
     const operands = ['+', '-', '*', '/', '.'];
-    console.log(typeof(formula));
-    console.log(formula);
     const last = formula.slice(-1);
-    console.log(last);
-    console.log(ansBox.value);
-    console.log(formula);
-    console.log(operands.includes(opera));
     if (!formula && (operands.includes(opera))) {
         //空文字かnull && 先頭に来てはいけない文字
-        console.log("Can't use operand as first character of formula.");
         return;
     } else if (operands.includes(last) && operands.includes(opera)) {
         //前が演算子で演算子の追加
-        console.log("Can't use operand after operand,so replace to newer one.");
         formula = formula.slice(0, formula.length - 1) + opera;
         ansBox.value = ansBox.value.slice(0, ansBox.value.length - 1);
         ansBox.value += display_computable[opera] ? display_computable[opera] : opera;
         return;
     } else if (last === '0' && !operands.includes(opera) && ((operands.includes(formula.slice(-2, -1)) && formula.slice(-2, -1) !== '.') || formula.slice(-2, -1) === "")) { //うんち条件式、リファクタしろカス　
         //前が0 かつ　追加するのが演算子ではない　かつ　((二つ前が小数点以外の演算子)　または　空文字(つまり先頭)) => 先頭か演算子の直後は、0を二個以上連続できないようにする
-        console.log("To prevent to be interpreted formula as Octal number,removed '0' from first character of the operator.");
         formula = formula.slice(0, formula.length - 1) + opera;
         ansBox.value = ansBox.value.slice(0, ansBox.value.length - 1);
         ansBox.value += display_computable[opera] ? display_computable[opera] : opera;
         return;
     } else {
-        console.log("Append success!");
         formula += opera;
         if (display_computable[opera]) {
             ansBox.value += display_computable[opera];
@@ -325,8 +309,6 @@ function formulaClear() {
 }
 
 function finallyCalc() {
-    console.log(formula);
-    console.log(ansBox.value);
     try {
         const answer = new Function("return " + formula)();
         if (answer === void 0) { //式がないときにundefindが返るのでundefindチェック
@@ -345,7 +327,6 @@ function finallyCalc() {
     } catch (e) {
         ansBox.value = "";
         formula = "";
-        console.log(e);
         alert("式を計算できませんでした><");
     }
 };
