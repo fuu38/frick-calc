@@ -232,6 +232,7 @@ window.onload = () => {
         $("#AC_pushed").css("display", "none");
         $("#AC").css("display", "block");
     });
+    //履歴閲覧と計算の切り替え
     $("#showFormulaLog").on('click', function() {
         $(".logArea").css("display", "block");
         $(".flick-keys-default").css("display", "none");
@@ -243,6 +244,10 @@ window.onload = () => {
         $(".flick-keys-default").css("display", "block");
         $("#showFormulaLog").css("display", "block");
         $("#backToCalc").css("display", "none");
+    });
+    //設定ボタン
+    $("#setting_btn").on("click", function() {
+        window.location.href = "setting.html";
     });
 };
 

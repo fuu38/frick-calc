@@ -59,13 +59,15 @@ footer {
 #showFormulaLog {
     height: 1.5em;
     width: auto;
-    margin: 2vw;
+    margin-top: 4vw;
+    margin-left: 4vw;
 }
 
 #backToCalc {
     height: 1.5em;
     width: auto;
-    margin: 2vw;
+    margin-top: 4vw;
+    margin-left: 4vw;
     display: none;
 }
 
