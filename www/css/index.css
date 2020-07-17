@@ -77,3 +77,10 @@ footer {
     color: white;
     border: solid 1px white;
 }
+
+#setting_btn {
+    height: 1.5em;
+    width: auto;
+    margin-top: 3vw;
+    margin-right: 3vw;
+}
