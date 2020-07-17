@@ -332,6 +332,6 @@ function finallyCalc() {
     } catch (e) {
         ansBox.value = "";
         formula = "";
-        alert("式を計算できませんでした><");
+        alert("この式は計算できません!");
     }
 };
