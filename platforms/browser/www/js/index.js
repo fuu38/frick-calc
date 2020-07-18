@@ -240,7 +240,7 @@ window.onload = () => {
         $("#AC_pushed").css("display", "none");
         $("#AC").css("display", "block");
     });
-    //履歴閲覧と計算の切り替え
+    //履歴閲覧と計算の切り替え(v1.3.0)
     $("#showFormulaLog").on('click', function() {
         $(".logArea").css("display", "block");
         $(".flick-keys-default").css("display", "none");
@@ -333,10 +333,34 @@ function finallyCalc() {
             ansBox.value = "";
             formula = "";
             alert("式を計算できませんでした><");
+            return;
         }
+        //v1.4.0 avaliable formula log
+        $(".logArea").append("<h4 class=\"log-text\">" + String(ansBox.value) + "</h4>");
+        //v1.3.0 avaliable calculate log
+        $(".logArea").append("<h4 class=\"log-text log-answer\">" + String(answer) + "</h4>");
         ansBox.value = String(answer);
         formula = String(answer);
-        $(".logArea").append("<h3 class=\"log-text\">" + String(answer) + "</h3>");
+        //v1.4.0 履歴の欄を押すとその式、答えが利用できる
+        $(".log-text").on("click", function() {
+            var val = this.innerHTML;
+            var arrayOfConverted = val.split("");
+            var formatedVal = "";
+            const replaceChar = {
+                "÷": "/",
+                "×": "+"
+            }
+            arrayOfConverted.forEach((c) => {
+                if (replaceChar[c]) {
+                    formatedVal += replaceChar[c];
+                } else {
+                    formatedVal += c;
+                }
+                ansBox.value = formatedVal;
+                formula = formatedVal;
+            });
+
+        });
     } catch (e) {
         ansBox.value = "";
         formula = "";
