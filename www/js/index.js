@@ -257,7 +257,6 @@ window.onload = () => {
     $("#setting_btn").on("click", function() {
         window.location.href = "setting.html";
     });
-    //v1.4.0 履歴の欄を押すとその式、答えが利用できる
 };
 
 function addFormula(opera) {
@@ -336,11 +335,31 @@ function finallyCalc() {
             alert("式を計算できませんでした><");
         }
         //v1.4.0 avaliable formula log
-        $(".logArea").append("<h2 class=\"log-text\">" + String(ansBox.value) + "</h2>");
+        $(".logArea").append("<h4 class=\"log-text\">" + String(ansBox.value) + "</h4>");
         //v1.3.0 avaliable calculate log
         $(".logArea").append("<h4 class=\"log-text log-answer\">" + String(answer) + "</h4>");
         ansBox.value = String(answer);
         formula = String(answer);
+        //v1.4.0 履歴の欄を押すとその式、答えが利用できる
+        $(".log-text").on("click", function() {
+            var val = this.innerHTML;
+            var arrayOfConverted = val.split("");
+            var formatedVal = "";
+            const replaceChar = {
+                "÷": "/",
+                "×": "+"
+            }
+            arrayOfConverted.forEach((c) => {
+                if (replaceChar[c]) {
+                    formatedVal += replaceChar[c];
+                } else {
+                    formatedVal += c;
+                }
+                ansBox.value = formatedVal;
+                formula = formatedVal;
+            });
+
+        });
     } catch (e) {
         ansBox.value = "";
         formula = "";
