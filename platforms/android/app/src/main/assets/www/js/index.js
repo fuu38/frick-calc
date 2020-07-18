@@ -23,9 +23,17 @@ window.longPressStandard = 200; //長押し判定時間(ms)
 var ansBox = document.getElementById("ansBox");
 var formula = "";
 var deletIntervalHolder;
-
 //jQueryは読み込んでからじゃないと動かないのでonloadの後でイベント登録
 window.onload = () => {
+    //バナー広告
+    document.addEventListener("deviceready", function() {
+        admob.banner.config({
+            id: 'ca-app-pub-3940256099942544/6300978111',
+            isTesting: true, // trueにするとテスト広告を表示
+            autoShow: true,
+        });
+        admob.banner.prepare().then(() => console.log("prepare done!"));
+    });
     //設定
     $("#to_Setting").on('click', function() {
         window.location.href = "setting.html"
@@ -332,6 +340,6 @@ function finallyCalc() {
     } catch (e) {
         ansBox.value = "";
         formula = "";
-        alert("式を計算できませんでした><");
+        alert("この式は計算できません!");
     }
 };

@@ -9,6 +9,17 @@
   "installed_plugins": {
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
+    "cordova-promise-polyfill": {
+      "PACKAGE_NAME": "io.github.chaha1n"
+    },
+    "cordova-admob-sdk": {
+      "PLAY_SERVICES_VERSION": "11.0.4",
+      "PACKAGE_NAME": "io.github.chaha1n"
+    },
+    "cordova-plugin-admob-free": {
+      "ADMOB_APP_ID": "ca-app-pub-2899126137428377~8162372611",
+      "PACKAGE_NAME": "io.github.chaha1n"
     }
   },
   "dependent_plugins": {}

@@ -1,0 +1,24 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-admob-sdk": {
+      "PACKAGE_NAME": "io.github.chaha1n"
+    },
+    "cordova-plugin-admob-free": {
+      "PACKAGE_NAME": "io.github.chaha1n"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "io.github.chaha1n"
+    },
+    "cordova-promise-polyfill": {
+      "PACKAGE_NAME": "io.github.chaha1n"
+    }
+  },
+  "dependent_plugins": {}
+}

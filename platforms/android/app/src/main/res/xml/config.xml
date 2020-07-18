@@ -4,6 +4,10 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="AdMob">
+        <param name="android-package" value="name.ratson.cordova.admob.AdMob" />
+        <param name="onload" value="true" />
+    </feature>
     <name>片手電卓</name>
     <description>
         フリック入力で使える画期的な電卓！

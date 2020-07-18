@@ -1,0 +1,21 @@
+#backToCalcBtn {
+    height: 1.5em;
+    width: auto;
+    margin-top: 3vw;
+    margin-right: 3vw;
+}
+
+#body {
+    background-color: #222222;
+    color: white;
+}
+
+.container {
+    text-align: center;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+}

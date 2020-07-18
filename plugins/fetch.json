@@ -13,6 +13,24 @@
       "id": "cordova-plugin-admob-free@0.27.0"
     },
     "is_top_level": true,
+    "variables": {
+      "ADMOB_APP_ID": "ca-app-pub-2899126137428377~8162372611"
+    }
+  },
+  "cordova-promise-polyfill": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-promise-polyfill"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
+  "cordova-admob-sdk": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-admob-sdk"
+    },
+    "is_top_level": true,
     "variables": {}
   }
 }

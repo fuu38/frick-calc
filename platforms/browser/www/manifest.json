@@ -1,0 +1,10 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "片手電卓",
+  "short_name": "片手電卓",
+  "version": "io.github.chaha1n",
+  "description": "フリック入力で使える画期的な電卓！",
+  "icons": [],
+  "start_url": "index.html"
+}

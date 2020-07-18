@@ -1,0 +1,53 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-admob-sdk": {
+      "PACKAGE_NAME": "io.github.chaha1n"
+    },
+    "cordova-promise-polyfill": {
+      "PACKAGE_NAME": "io.github.chaha1n"
+    },
+    "cordova-plugin-admob-free": {
+      "PACKAGE_NAME": "io.github.chaha1n"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "io.github.chaha1n"
+    }
+  },
+  "dependent_plugins": {},
+  "modules": [
+    {
+      "file": "plugins/cordova-promise-polyfill/www/Promise.js",
+      "id": "cordova-promise-polyfill.Promise",
+      "pluginId": "cordova-promise-polyfill",
+      "runs": true
+    },
+    {
+      "file": "plugins/cordova-promise-polyfill/www/promise.min.js",
+      "id": "cordova-promise-polyfill.promise.min",
+      "pluginId": "cordova-promise-polyfill"
+    },
+    {
+      "file": "plugins/cordova-plugin-admob-free/www/admob.js",
+      "id": "cordova-plugin-admob-free.AdMob",
+      "pluginId": "cordova-plugin-admob-free",
+      "clobbers": [
+        "admob",
+        "AdMob",
+        "plugins.AdMob"
+      ]
+    }
+  ],
+  "plugin_metadata": {
+    "cordova-admob-sdk": "0.24.1",
+    "cordova-promise-polyfill": "0.0.2",
+    "cordova-plugin-admob-free": "0.27.0",
+    "cordova-plugin-whitelist": "1.3.4"
+  }
+}
