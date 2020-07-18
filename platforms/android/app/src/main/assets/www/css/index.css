@@ -28,7 +28,7 @@ footer {
     text-align: center;
     font-size: xx-large;
     background-color: #222222;
-    margin-top: 30vh;
+    margin-top: 15vh;
     color: white;
     border-bottom: 1px solid #cccccc;
     border-right: none;
@@ -53,7 +53,7 @@ footer {
 
 .suggest-img {
     display: none;
-    margin-top: 5vh;
+    margin-top: 3vh;
 }
 
 #showFormulaLog {
