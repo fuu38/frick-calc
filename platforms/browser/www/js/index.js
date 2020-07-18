@@ -28,8 +28,8 @@ window.onload = () => {
     //バナー広告
     document.addEventListener("deviceready", function() {
         admob.banner.config({
-            id: 'ca-app-pub-3940256099942544/6300978111',
-            isTesting: true, // trueにするとテスト広告を表示
+            id: 'ca-app-pub-2899126137428377/2910045936',
+            isTesting: false, // trueにするとテスト広告を表示
             autoShow: true,
         });
         admob.banner.prepare().then(() => console.log("prepare done!"));

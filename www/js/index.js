@@ -240,7 +240,7 @@ window.onload = () => {
         $("#AC_pushed").css("display", "none");
         $("#AC").css("display", "block");
     });
-    //履歴閲覧と計算の切り替え
+    //履歴閲覧と計算の切り替え(v1.3.0)
     $("#showFormulaLog").on('click', function() {
         $(".logArea").css("display", "block");
         $(".flick-keys-default").css("display", "none");
@@ -257,6 +257,7 @@ window.onload = () => {
     $("#setting_btn").on("click", function() {
         window.location.href = "setting.html";
     });
+    //v1.4.0 履歴の欄を押すとその式、答えが利用できる
 };
 
 function addFormula(opera) {
@@ -334,9 +335,12 @@ function finallyCalc() {
             formula = "";
             alert("式を計算できませんでした><");
         }
+        //v1.4.0 avaliable formula log
+        $(".logArea").append("<h2 class=\"log-text\">" + String(ansBox.value) + "</h2>");
+        //v1.3.0 avaliable calculate log
+        $(".logArea").append("<h4 class=\"log-text log-answer\">" + String(answer) + "</h4>");
         ansBox.value = String(answer);
         formula = String(answer);
-        $(".logArea").append("<h3 class=\"log-text\">" + String(answer) + "</h3>");
     } catch (e) {
         ansBox.value = "";
         formula = "";
