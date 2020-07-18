@@ -333,6 +333,7 @@ function finallyCalc() {
             ansBox.value = "";
             formula = "";
             alert("式を計算できませんでした><");
+            return;
         }
         //v1.4.0 avaliable formula log
         $(".logArea").append("<h4 class=\"log-text\">" + String(ansBox.value) + "</h4>");
