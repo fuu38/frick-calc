@@ -6,7 +6,6 @@ window.onload = function () {
     $("#backToCalcBtn").on("click", function () {
         window.location.href = "index.html";
         const settings = document.getElementById("settings-form");
-        alert(settings.handside.value);
         window.localStorage.setItem("handside", settings.handside.value);
     });
 };
