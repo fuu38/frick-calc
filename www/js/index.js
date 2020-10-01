@@ -26,7 +26,7 @@ var deletIntervalHolder;
 //jQueryは読み込んでからじゃないと動かないのでonloadの後でイベント登録
 window.onload = () => {
     //バナー広告
-    document.addEventListener("deviceready", function() {
+    document.addEventListener("deviceready", function () {
         admob.banner.config({
             id: 'ca-app-pub-2899126137428377/2910045936',
             isTesting: false, // trueにするとテスト広告を表示
@@ -34,19 +34,29 @@ window.onload = () => {
         });
         admob.banner.prepare().then(() => console.log("prepare done!"));
     });
+    function applySettings() {
+        let handside = window.localStorage.getItem("handside");
+        if (handside === "left_hand") {
+            $(".flick-keys-all").append("<div class=\"col-2\"></div>");
+        }
+        else {
+            $(".flick-keys-all").prepend("<div class=\"col-2\"></div>");
+        }
+    }
+    applySettings();
     //設定
-    $("#to_Setting").on('click', function() {
+    $("#to_Setting").on('click', function () {
         window.location.href = "setting.html"
     });
     //5ボタン
-    $("#5_9").on('touchstart', function(event) {
+    $("#5_9").on('touchstart', function (event) {
         window.touchStartX = event.changedTouches[0].pageX;
         window.touchStartY = event.changedTouches[0].pageY;
         $("#5_9").css("display", "none");
         $("#5_9_pushed").css("display", "block");
         $("#suggest_5").css("display", "block");
     });
-    $("#5_9").on('touchmove', function(event) {
+    $("#5_9").on('touchmove', function (event) {
         var thisx = event.changedTouches[0].pageX;
         var thisy = event.changedTouches[0].pageY;
         const diffX = thisx - window.touchStartX;
@@ -64,7 +74,7 @@ window.onload = () => {
             $("#suggest_7").css("display", "block");
         }
     });
-    $("#5_9").on('touchend', function() {
+    $("#5_9").on('touchend', function () {
         $(".suggest-img").css("display", "none"); //サジェスト削除
         var thisx = event.changedTouches[0].pageX;
         var thisy = event.changedTouches[0].pageY;
@@ -88,14 +98,14 @@ window.onload = () => {
         $("#5_9").css("display", "block");
     });
     //0ボタン
-    $("#0_4").on('touchstart', function(event) {
+    $("#0_4").on('touchstart', function (event) {
         window.touchStartX = event.changedTouches[0].pageX;
         window.touchStartY = event.changedTouches[0].pageY;
         $("#0_4").css("display", "none");
         $("#0_4_pushed").css("display", "block");
         $("#suggest_0").css("display", "block");
     });
-    $('#0_4').on('touchmove', function(event) {
+    $('#0_4').on('touchmove', function (event) {
         var thisx = event.changedTouches[0].pageX;
         var thisy = event.changedTouches[0].pageY;
         const diffX = thisx - window.touchStartX;
@@ -113,7 +123,7 @@ window.onload = () => {
             $("#suggest_2").css("display", "block");
         }
     });
-    $("#0_4").on('touchend', function() {
+    $("#0_4").on('touchend', function () {
         $(".suggest-img").css("display", "none"); //サジェスト削除
         var thisx = event.changedTouches[0].pageX;
         var thisy = event.changedTouches[0].pageY;
@@ -138,14 +148,14 @@ window.onload = () => {
     });
     //演算子ボタン
 
-    $("#operands").on('touchstart', function(event) {
+    $("#operands").on('touchstart', function (event) {
         window.touchStartX = event.changedTouches[0].pageX;
         window.touchStartY = event.changedTouches[0].pageY;
         $("#operands").css("display", "none");
         $("#operands_pushed").css("display", "block");
         $("#suggest_add").css("display", "block");
     });
-    $("#operands").on('touchmove', function(event) {
+    $("#operands").on('touchmove', function (event) {
         var thisx = event.changedTouches[0].pageX;
         var thisy = event.changedTouches[0].pageY;
         const diffX = thisx - window.touchStartX;
@@ -163,7 +173,7 @@ window.onload = () => {
             $("#suggest_by").css("display", "block");
         }
     });
-    $("#operands").on('touchend', function() {
+    $("#operands").on('touchend', function () {
         $(".suggest-img").css("display", "none"); //サジェスト削除
         var thisx = event.changedTouches[0].pageX;
         var thisy = event.changedTouches[0].pageY;
@@ -189,7 +199,7 @@ window.onload = () => {
         $("#operands").css("display", "block");
     });
     //ACボタン
-    $("#AC").on('touchstart', function(event) {
+    $("#AC").on('touchstart', function (event) {
         window.touchStartX = event.changedTouches[0].pageX;
         window.touchStartY = event.changedTouches[0].pageY;
         $("#AC").css("display", "none");
@@ -197,7 +207,7 @@ window.onload = () => {
         $("#suggest_del").css("display", "block");
         deletIntervalHolder = setInterval(deleteLastCharOfFormula, 100);
     });
-    $("#AC").on('touchmove', function(event) {
+    $("#AC").on('touchmove', function (event) {
         var thisx = event.changedTouches[0].pageX;
         var thisy = event.changedTouches[0].pageY;
         const diffX = thisx - window.touchStartX;
@@ -217,7 +227,7 @@ window.onload = () => {
         }
         clearInterval(deletIntervalHolder);
     })
-    $("#AC").on('touchend', function() {
+    $("#AC").on('touchend', function () {
         clearInterval(deletIntervalHolder);
         $(".suggest-img").css("display", "none"); //サジェスト削除
         var thisx = event.changedTouches[0].pageX;
@@ -241,20 +251,20 @@ window.onload = () => {
         $("#AC").css("display", "block");
     });
     //履歴閲覧と計算の切り替え(v1.3.0)
-    $("#showFormulaLog").on('click', function() {
+    $("#showFormulaLog").on('click', function () {
         $(".logArea").css("display", "block");
         $(".flick-keys-default").css("display", "none");
         $("#showFormulaLog").css("display", "none");
         $("#backToCalc").css("display", "block");
     });
-    $("#backToCalc").on("click", function() {
+    $("#backToCalc").on("click", function () {
         $(".logArea").css("display", "none");
         $(".flick-keys-default").css("display", "block");
         $("#showFormulaLog").css("display", "block");
         $("#backToCalc").css("display", "none");
     });
     //設定ボタン
-    $("#setting_btn").on("click", function() {
+    $("#setting_btn").on("click", function () {
         window.location.href = "setting.html";
     });
 };
@@ -341,14 +351,14 @@ function finallyCalc() {
         $(".logArea").append("<h4 class=\"log-text log-answer\">" + String(answer) + "</h4>");
         ansBox.value = String(answer);
         formula = String(answer);
-        //v1.4.0 履歴の欄を押すとその式、答えが利用できる
-        $(".log-text").on("click", function() {
-            var val = this.innerHTML;
-            var arrayOfConverted = val.split("");
+        //v1.4.0 履歴の欄を押すとその式、答えが利用できるようにイベントハンドラを登録する
+        $(".log-text").on("click", function () {
+            ansBox.value = this.innerHTML;
+            var arrayOfConverted = ansBox.value.split("");
             var formatedVal = "";
             const replaceChar = {
                 "÷": "/",
-                "×": "+"
+                "×": "*"
             }
             arrayOfConverted.forEach((c) => {
                 if (replaceChar[c]) {
@@ -356,7 +366,6 @@ function finallyCalc() {
                 } else {
                     formatedVal += c;
                 }
-                ansBox.value = formatedVal;
                 formula = formatedVal;
             });
 

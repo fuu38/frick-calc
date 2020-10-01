@@ -341,14 +341,14 @@ function finallyCalc() {
         $(".logArea").append("<h4 class=\"log-text log-answer\">" + String(answer) + "</h4>");
         ansBox.value = String(answer);
         formula = String(answer);
-        //v1.4.0 履歴の欄を押すとその式、答えが利用できる
+        //v1.4.0 履歴の欄を押すとその式、答えが利用できるようにイベントハンドラを登録する
         $(".log-text").on("click", function() {
-            var val = this.innerHTML;
-            var arrayOfConverted = val.split("");
+            ansBox.value = this.innerHTML;
+            var arrayOfConverted = ansBox.value.split("");
             var formatedVal = "";
             const replaceChar = {
                 "÷": "/",
-                "×": "+"
+                "×": "*"
             }
             arrayOfConverted.forEach((c) => {
                 if (replaceChar[c]) {
@@ -356,7 +356,6 @@ function finallyCalc() {
                 } else {
                     formatedVal += c;
                 }
-                ansBox.value = formatedVal;
                 formula = formatedVal;
             });
 
